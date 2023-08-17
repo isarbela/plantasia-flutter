@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.3
 
 dev_dependencies:
   flutter_test:
@@ -57,14 +58,20 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+
+  - family: Mulish
+    fonts:
+      - asset: assets/fonts/Mulish.ttf 
+      - asset: assets/fonts/Mulish-Bold.ttf
+        weight: 700
+
 
 assets:
-# add fonts
-- assets/fonts/
 
 # language tranlations files
 - assets/i18n/pt-br.json
 - assets/i18n/en.json
 
 # images
-- assets/images/
+- assets/images/plantasia.png
