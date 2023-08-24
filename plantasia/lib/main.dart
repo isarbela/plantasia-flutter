@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 65, 100, 74)),
         useMaterial3: true,
       ),
-      home: const Dashboard(title: 'Plantasia'),
+      home: Dashboard(
+        title: 'Plantasia',
+        itens: List<String>.generate(100, (i) => 'Item $i'),
+      ),
     );
   }
 }

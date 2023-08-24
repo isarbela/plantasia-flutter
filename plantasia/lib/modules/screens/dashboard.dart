@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key, required this.title});
+  const Dashboard({super.key, required this.title, required this.itens});
 
   final String title;
+  final List<String> itens;
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -35,18 +36,31 @@ class _DashboardState extends State<Dashboard> {
               topRight: Radius.circular(200),
             ),
           ),
-          child: const Padding(
-            padding: EdgeInsets.only(top: 140.0, right: 16.0, left: 16.0),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 140.0, right: 16.0, left: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Suas Plantas",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: widget.itens.length,
+                      prototypeItem: ListTile(
+                        title: Text(widget.itens.first),
+                      ),
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(widget.itens[index]),
+                        );
+                      }),
                 ),
               ],
             ),
