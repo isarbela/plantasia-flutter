@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantasia/modules/screens/new_plant.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key, required this.title, required this.itens});
@@ -70,7 +71,13 @@ class _DashboardState extends State<Dashboard> {
                           backgroundColor:
                               MaterialStatePropertyAll(Colors.orange),
                         ),
-                        onPressed: () => {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const NewPlant()),
+                          );
+                        },
                         child: const Text('+ Adicionar Planta')),
                   ],
                 ),
