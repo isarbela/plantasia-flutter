@@ -62,6 +62,18 @@ class _DashboardState extends State<Dashboard> {
                         );
                       }),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.orange),
+                        ),
+                        onPressed: () => {},
+                        child: const Text('+ Adicionar Planta')),
+                  ],
+                ),
               ],
             ),
           ),
