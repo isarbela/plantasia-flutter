@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/screens/new_plant.dart';
+import 'package:plantasia/widgets/card_item.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key, required this.title, required this.itens});
 
   final String title;
-  final List<String> itens;
+  final List<Plant> itens;
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -54,13 +56,8 @@ class _DashboardState extends State<Dashboard> {
                   child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: widget.itens.length,
-                      prototypeItem: ListTile(
-                        title: Text(widget.itens.first),
-                      ),
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(widget.itens[index]),
-                        );
+                        return CardItem(plantData: widget.itens[index]);
                       }),
                 ),
                 Row(

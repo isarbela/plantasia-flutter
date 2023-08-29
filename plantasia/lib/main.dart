@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/screens/dashboard.dart';
 
 void main() {
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
       ),
       home: Dashboard(
         title: 'Plantasia',
-        itens: List<String>.generate(100, (i) => 'Item $i'),
+        itens: [
+          Plant("assets/placeholder.png",
+              name: "Susan", age: 12, species: "Cajueiro"),
+        ],
       ),
     );
   }
