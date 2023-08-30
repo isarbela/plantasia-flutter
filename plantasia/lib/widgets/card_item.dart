@@ -15,7 +15,7 @@ class CardItem extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => PlantDetails(
-                    title: 'Plant name',
+                    title: '${plantData.name}(${plantData.commonName})',
                     plantData: plantData,
                   )),
         );
