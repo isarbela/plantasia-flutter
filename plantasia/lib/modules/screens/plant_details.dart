@@ -16,9 +16,9 @@ class _PlantDetailsState extends State<PlantDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 242, 227, 219),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 65, 100, 74),
+        backgroundColor: const Color.fromARGB(255, 38, 58, 41),
         title: Text(
           widget.title,
           style:
@@ -30,7 +30,7 @@ class _PlantDetailsState extends State<PlantDetails> {
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
           const SizedBox(
-            height: 48,
+            height: 16,
           ),
           PlantInfo(plantData: widget.plantData)
         ],
