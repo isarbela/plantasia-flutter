@@ -17,7 +17,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Mulish',
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 65, 100, 74)),
+          seedColor: const Color.fromARGB(255, 38, 58, 41),
+          primary: const Color.fromARGB(255, 38, 58, 41),
+          onPrimary: const Color.fromARGB(255, 242, 227, 219),
+          secondary: const Color.fromARGB(255, 65, 100, 74),
+          onSecondary: Colors.white,
+        ),
         useMaterial3: true,
       ),
       home: Dashboard(

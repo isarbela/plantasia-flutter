@@ -39,10 +39,10 @@ class CardItem extends StatelessWidget {
               ),
               Text(
                 '${plantData.age} semanas de idade',
-                style: const TextStyle(fontSize: 16, color: Colors.white),
+                style: const TextStyle(fontSize: 14, color: Colors.white),
               ),
               const SizedBox(
-                height: 4,
+                height: 16,
               ),
               Text(
                 plantData.commonName.toUpperCase(),
