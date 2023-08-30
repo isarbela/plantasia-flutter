@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:plantasia/modules/models/plant.dart';
+import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/screens/new_plant.dart';
 import 'package:plantasia/widgets/card_item.dart';
 
+import '../repositories/db.dart';
+
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key, required this.title, required this.itens});
+  const Dashboard({super.key, required this.title});
 
   final String title;
-  final List<Plant> itens;
 
   @override
   State<Dashboard> createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
+  late List<PlantDB> plants;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPlantsFromDatabase().then((value) {
+      plants = value;
+    });
+  }
+
+  Future<List<PlantDB>> _fetchPlantsFromDatabase() async {
+    return DBProvider.db.getAllPlants();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,9 +74,9 @@ class _DashboardState extends State<Dashboard> {
                 Expanded(
                   child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: widget.itens.length,
+                      itemCount: plants.length,
                       itemBuilder: (context, index) {
-                        return CardItem(plantData: widget.itens[index]);
+                        return CardItem(plantData: plants[index]);
                       }),
                 ),
                 Row(

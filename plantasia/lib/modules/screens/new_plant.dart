@@ -15,7 +15,7 @@ class NewPlant extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      body: NewPlantForm(),
+      body: const NewPlantForm(),
     );
   }
 }
