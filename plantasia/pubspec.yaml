@@ -41,6 +41,9 @@ dependencies:
   path: ^1.8.3
   uuid: ^3.0.6
   sqflite: ^2.3.0
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +66,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
   fonts:
 
   - family: Mulish
@@ -73,4 +77,3 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/i18n/

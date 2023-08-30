@@ -1,0 +1,14 @@
+{
+    "yourPlants": "Your Plants",
+    "@yourPlants": {
+        "description" : "Dashboard title"
+    },
+    "addPlant": "+ Add Plant",
+    "@addPlant": {
+        "description": "Title of add plant button on dashboard"
+    },
+    "growYourGarden": "Grow your Garden!",
+    "@growYourGarden": {
+        "description": "Title of screen to add new plant" 
+    }
+}

@@ -3,6 +3,7 @@ import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/screens/new_plant.dart';
 import 'package:plantasia/widgets/card_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../repositories/db.dart';
 
@@ -20,14 +21,15 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void initState() {
+    _fetchPlantsFromDatabase();
     super.initState();
-    _fetchPlantsFromDatabase().then((value) {
-      plants = value;
-    });
   }
 
-  Future<List<PlantDB>> _fetchPlantsFromDatabase() async {
-    return DBProvider.db.getAllPlants();
+  void _fetchPlantsFromDatabase() async {
+    final result = await DBProvider.db.getAllPlants();
+    setState(() {
+      plants = result;
+    });
   }
 
   @override
@@ -60,9 +62,9 @@ class _DashboardState extends State<Dashboard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Suas Plantas",
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.yourPlants,
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -96,9 +98,9 @@ class _DashboardState extends State<Dashboard> {
                               builder: (context) => const NewPlant()),
                         );
                       },
-                      child: const Text(
-                        '+ Adicionar Planta',
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.addPlant,
+                        style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
