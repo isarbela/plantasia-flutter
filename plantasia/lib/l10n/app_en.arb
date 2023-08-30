@@ -10,5 +10,21 @@
     "growYourGarden": "Grow your Garden!",
     "@growYourGarden": {
         "description": "Title of screen to add new plant" 
+    },
+    "nameLabel": "Name",
+    "@nameLabel": {
+        "description": "Label for plant name" 
+    },
+    "ageLabel": "Age (in weeks)",
+    "@ageLabel": {
+        "description": "Label for plant age" 
+    },
+    "speciesLabel": "Species",
+    "@speciesLabel": {
+        "description": "Label for plant species" 
+    },
+    "imageLabel": "Image",
+    "@imageLabel": {
+        "description": "Label for plant image" 
     }
 }

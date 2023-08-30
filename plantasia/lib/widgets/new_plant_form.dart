@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewPlantForm extends StatefulWidget {
   const NewPlantForm({super.key});
@@ -44,7 +45,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    labelText: 'Name',
+                    labelText: AppLocalizations.of(context)!.nameLabel,
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -62,7 +63,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    labelText: 'Age (in weeks)',
+                    labelText: AppLocalizations.of(context)!.ageLabel,
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -95,7 +96,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Image input:'),
+                    Text(AppLocalizations.of(context)!.imageLabel),
                     IconButton(
                       onPressed: _pickImage,
                       icon: const Icon(
