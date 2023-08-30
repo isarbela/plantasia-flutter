@@ -66,12 +66,6 @@ flutter:
       - asset: assets/fonts/Mulish-Bold.ttf
         weight: 700
 
-
-assets:
-
-# language tranlations files
-- assets/i18n/pt-br.json
-- assets/i18n/en.json
-
-# images
-- assets/images/plantasia.png
+  assets:
+    - assets/images/
+    - assets/i18n/

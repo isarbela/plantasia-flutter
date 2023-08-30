@@ -17,9 +17,9 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 65, 100, 74),
+      backgroundColor: const Color.fromARGB(255, 38, 58, 41),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 65, 100, 74),
+        backgroundColor: const Color.fromARGB(255, 38, 58, 41),
         title: Text(
           widget.title,
           style:
@@ -30,7 +30,7 @@ class _DashboardState extends State<Dashboard> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(
-            top: 100,
+            top: 50,
           ),
           decoration: const BoxDecoration(
             color: Color.fromARGB(255, 242, 227, 219),
@@ -47,10 +47,13 @@ class _DashboardState extends State<Dashboard> {
                 const Text(
                   "Suas Plantas",
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 20,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                const SizedBox(
+                  height: 8,
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -64,20 +67,30 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.orange),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NewPlant()),
-                          );
-                        },
-                        child: const Text('+ Adicionar Planta')),
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 232, 106, 51)),
+                        padding: MaterialStatePropertyAll(
+                            EdgeInsets.fromLTRB(16, 8, 16, 8)),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NewPlant()),
+                        );
+                      },
+                      child: const Text(
+                        '+ Adicionar Planta',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
+                const SizedBox(
+                  height: 8,
+                )
               ],
             ),
           ),

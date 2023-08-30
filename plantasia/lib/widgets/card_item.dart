@@ -9,11 +9,18 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      color: const Color.fromARGB(255, 65, 100, 74),
+      child: Row(children: [
         Image.asset(
           plantData.image,
-          fit: BoxFit.cover,
-          height: 80,
+          fit: BoxFit.contain,
+          height: 100,
+        ),
+        const SizedBox(
+          width: 4,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -23,16 +30,26 @@ class CardItem extends StatelessWidget {
               Text(
                 plantData.name,
                 style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 242, 227, 219)),
               ),
               const SizedBox(
                 height: 4,
               ),
               Text(
-                plantData.species,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                '${plantData.age} semanas de idade',
+                style: const TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                plantData.commonName.toUpperCase(),
+                style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 242, 227, 219)),
               ),
             ],
           ),
