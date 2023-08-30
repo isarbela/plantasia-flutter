@@ -25,21 +25,8 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: Dashboard(
+      home: const Dashboard(
         title: 'Plantasia',
-        itens: [
-          Plant("assets/images/blackflower.png",
-              scientificName: ['bibi'],
-              cycle: 'risos',
-              watering: 'daily',
-              careLevel: 'nenem',
-              indoor: 'no',
-              description:
-                  'Planta fofa fruto fofo tem no nordeste ihuuu castanha de caju hmmm delicia',
-              name: "Susan",
-              age: 12,
-              commonName: "Cajueiro"),
-        ],
       ),
     );
   }

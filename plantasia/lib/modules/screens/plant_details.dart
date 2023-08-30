@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:plantasia/modules/models/plant.dart';
+import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/widgets/column_information.dart';
 
 class PlantDetails extends StatefulWidget {
   const PlantDetails({super.key, required this.title, required this.plantData});
 
   final String title;
-  final Plant plantData;
+  final PlantDB plantData;
 
   @override
   State<PlantDetails> createState() => _PlantDetailsState();
@@ -32,7 +33,7 @@ class _PlantDetailsState extends State<PlantDetails> {
           const SizedBox(
             height: 16,
           ),
-          PlantInfo(plantData: widget.plantData)
+          //PlantInfo(plantData: widget.plantData)
         ],
       )),
     );

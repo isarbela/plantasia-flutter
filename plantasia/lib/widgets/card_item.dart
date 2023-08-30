@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plantasia/modules/models/plant.dart';
+import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/screens/plant_details.dart';
 
 class CardItem extends StatelessWidget {
-  final Plant plantData;
+  final PlantDB plantData;
 
   const CardItem({super.key, required this.plantData});
 
@@ -15,7 +16,7 @@ class CardItem extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => PlantDetails(
-                    title: 'Plant name',
+                    title: '${plantData.name}(${plantData.commonName})',
                     plantData: plantData,
                   )),
         );
@@ -26,7 +27,7 @@ class CardItem extends StatelessWidget {
         ),
         color: const Color.fromARGB(255, 65, 100, 74),
         child: Row(children: [
-          Image.asset(
+          Image.memory(
             plantData.image,
             fit: BoxFit.contain,
             height: 100,
