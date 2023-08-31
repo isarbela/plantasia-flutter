@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:plantasia/modules/models/plant_db.dart';
+import 'package:plantasia/modules/repositories/db.dart';
+import 'package:uuid/uuid.dart';
 
 class NewPlantForm extends StatefulWidget {
   const NewPlantForm({super.key});
@@ -16,6 +19,11 @@ class NewPlantFormState extends State<NewPlantForm> {
   late double _numberValue;
   File? imageFile;
   final _formKey = GlobalKey<NewPlantFormState>();
+
+  _savePlant(plant) {
+    print(plant.toString());
+    DBProvider.db.insertPlant(plant);
+  }
 
   _pickImage() async {
     final pickedImage =
@@ -44,7 +52,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    labelText: 'Name',
+                    hintText: 'Name',
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -62,7 +70,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    labelText: 'Age (in weeks)',
+                    hintText: 'Age (in weeks)',
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -95,7 +103,10 @@ class NewPlantFormState extends State<NewPlantForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Image input:'),
+                    const Text(
+                      'Image input:',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     IconButton(
                       onPressed: _pickImage,
                       icon: const Icon(
@@ -108,8 +119,39 @@ class NewPlantFormState extends State<NewPlantForm> {
                     ? Image.file(
                         imageFile!,
                         fit: BoxFit.cover,
+                        width: 300,
+                        height: 300,
                       )
-                    : Container()
+                    : Container(),
+                ElevatedButton(
+                  onPressed: () {
+                    if (imageFile != null) {
+                      _savePlant(
+                        PlantDB(
+                          imageFile!.readAsBytesSync(),
+                          id: const Uuid().v1(),
+                          name: _nameValue,
+                          commonName: _selectedSpinnerValue,
+                          age: _numberValue.toString()
+                        )
+                      );
+                    } else {
+                      _savePlant(
+                          PlantDB(
+                            null,
+                            id: const Uuid().v1(),
+                            name: _nameValue,
+                            commonName: _selectedSpinnerValue,
+                            age: _numberValue.toString()
+                          )
+                        );
+                    }
+                  },
+                  child: const Text(
+                    'Salvar planta',
+                    style: TextStyle(color: Colors.white),
+                  )
+                )
               ],
             ),
           ],

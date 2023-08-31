@@ -5,7 +5,7 @@ class PlantDB {
   final String name;
   final String commonName;
   final String age;
-  final Uint8List image;
+  final Uint8List? image;
 
   PlantDB(this.image,
       {required this.id,

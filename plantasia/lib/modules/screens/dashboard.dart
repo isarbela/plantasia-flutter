@@ -17,7 +17,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  late List<PlantDB> plants;
+  late List<PlantDB> plants = [];
 
   @override
   void initState() {
