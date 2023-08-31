@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/repositories/db.dart';
 import 'package:uuid/uuid.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:plantasia/modules/repositories/plant_repository.dart';
 
 class NewPlantForm extends StatefulWidget {
   const NewPlantForm({super.key});
@@ -14,8 +16,9 @@ class NewPlantForm extends StatefulWidget {
 }
 
 class NewPlantFormState extends State<NewPlantForm> {
+  List<String> commonNames = [];
   String _nameValue = '';
-  String _selectedSpinnerValue = 'Option 1';
+  String _selectedSpinnerValue = "European Silver Fir";
   late double _numberValue;
   File? imageFile;
   final _formKey = GlobalKey<NewPlantFormState>();
@@ -23,6 +26,19 @@ class NewPlantFormState extends State<NewPlantForm> {
   _savePlant(plant) {
     print(plant.toString());
     DBProvider.db.insertPlant(plant);
+  }
+  @override
+  void initState() {
+    _fetchPlantsNames();
+    super.initState();
+  }
+
+  void _fetchPlantsNames() async {
+    final result = await PlantRepository().fetchPlants();
+    setState(() {
+      commonNames = result.map((plant) => plant.commonName).toList();
+      print(commonNames);
+    });
   }
 
   _pickImage() async {
@@ -70,7 +86,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    hintText: 'Age (in weeks)',
+                    hintText: AppLocalizations.of(context)!.ageLabel,
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -89,11 +105,11 @@ class NewPlantFormState extends State<NewPlantForm> {
                       _selectedSpinnerValue = newValue!;
                     });
                   },
-                  items: <String>['Option 1', 'Option 2', 'Option 3']
-                      .map<DropdownMenuItem<String>>((String value) {
+                  items:
+                      commonNames.map<DropdownMenuItem<String>>((String name) {
                     return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
+                      value: name,
+                      child: Text(name),
                     );
                   }).toList(),
                 ),
@@ -103,8 +119,8 @@ class NewPlantFormState extends State<NewPlantForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Image input:',
+                    Text(
+                      AppLocalizations.of(context)!.imageLabel,
                       style: TextStyle(color: Colors.white),
                     ),
                     IconButton(

@@ -1,5 +1,9 @@
 {
    "yourPlants": "Suas Plantas",
    "addPlant": "+ Adicionar Planta",
-   "growYourGarden": "Aumente seu Jardim!"
+   "growYourGarden": "Aumente seu Jardim!",
+   "nameLabel": "Nome",
+   "ageLabel": "Idade (em semanas)",
+   "speciesLabel": "Espécie",
+   "imageLabel": "Foto"
 }
