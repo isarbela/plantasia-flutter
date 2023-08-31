@@ -9,9 +9,9 @@ Este é um projeto Android de gerenciamento de plantas, onde os usuários podem 
 
 1. Clone esse repositório em seu computador local com o comando:
  
-   ```
-   git clone https://github.com/isarbela/plantasia-android.git
-   ```
+```
+git clone https://github.com/isarbela/plantasia-android.git
+```
 2. Abra VSCode selecione "Abrir pasta".
 3. Navegue até o diretório onde você clonou o repositório e selecione-o.
 4. Entre na pasta plantasia, executando no terminal:
