@@ -13,12 +13,26 @@ class NewPlantForm extends StatefulWidget {
 }
 
 class NewPlantFormState extends State<NewPlantForm> {
-  final List<String> commonNames = PlantRepository().getNames();
+  List<String> commonNames = [];
   String _nameValue = '';
-  String _selectedSpinnerValue = '';
+  String _selectedSpinnerValue = "European Silver Fir";
   late double _numberValue;
   File? imageFile;
   final _formKey = GlobalKey<NewPlantFormState>();
+
+  @override
+  void initState() {
+    _fetchPlantsNames();
+    super.initState();
+  }
+
+  void _fetchPlantsNames() async {
+    final result = await PlantRepository().fetchPlants();
+    setState(() {
+      commonNames = result.map((plant) => plant.commonName).toList();
+      print(commonNames);
+    });
+  }
 
   _pickImage() async {
     final pickedImage =
@@ -85,10 +99,10 @@ class NewPlantFormState extends State<NewPlantForm> {
                     });
                   },
                   items:
-                      commonNames.map<DropdownMenuItem<String>>((String value) {
+                      commonNames.map<DropdownMenuItem<String>>((String name) {
                     return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
+                      value: name,
+                      child: Text(name),
                     );
                   }).toList(),
                 ),

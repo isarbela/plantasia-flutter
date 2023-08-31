@@ -1,14 +1,14 @@
 class Plant {
-  final String id;
-  final String name;
+  final int id;
+  final String? name;
   final String commonName;
-  final List<String> scientificName;
-  final String cycle;
-  final String watering;
-  final String indoor;
-  final String careLevel;
-  final int age;
-  final String description;
+  final List<dynamic> scientificName;
+  final String? cycle;
+  final String? watering;
+  final String? indoor;
+  final String? careLevel;
+  final int? age;
+  final String? description;
 
   Plant(
       {required this.id,
