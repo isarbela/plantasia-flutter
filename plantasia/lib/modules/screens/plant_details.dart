@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/widgets/column_information.dart';
 

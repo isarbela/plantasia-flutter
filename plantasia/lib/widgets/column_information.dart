@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
+import 'package:plantasia/modules/repositories/db.dart';
 
 class PlantInfo extends StatelessWidget {
   final PlantDB plantData;
@@ -12,6 +12,9 @@ class PlantInfo extends StatelessWidget {
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
+  _deletePlant() {
+    DBProvider.db.deletePlant(plantData);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +115,19 @@ class PlantInfo extends StatelessWidget {
               // const SizedBox(
               //   height: 8,
               // ),
+              ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 232, 106, 51)),
+                ),
+                onPressed: () {
+                  _deletePlant();
+                  Navigator.pop(context, 'delete_plant');
+                },
+                child: const Text(
+                  'Apagar planta',
+                  style: TextStyle(color: Colors.white),
+                ))
             ],
           ),
         )

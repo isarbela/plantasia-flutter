@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/repositories/db.dart';
-import 'package:plantasia/modules/screens/dashboard.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:plantasia/modules/repositories/plant_repository.dart';
@@ -38,7 +37,6 @@ class NewPlantFormState extends State<NewPlantForm> {
     final result = await PlantRepository().fetchPlants();
     setState(() {
       commonNames = result.map((plant) => plant.commonName).toList();
-      print(commonNames);
     });
   }
 
@@ -88,7 +86,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      hintText: AppLocalizations.of(context)!.ageLabel,
+                      hintText: AppLocalizations.of(context).ageLabel,
                     ),
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
@@ -129,7 +127,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.imageLabel,
+                        AppLocalizations.of(context).imageLabel,
                         style: const TextStyle(color: Colors.white),
                       ),
                       IconButton(
@@ -167,7 +165,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                               commonName: _selectedSpinnerValue,
                               age: _numberValue.toString()));
                         }
-                        Navigator.pop(context);
+                        Navigator.pop(context, 'new_plant');
                       },
                       child: const Text(
                         'Salvar planta',

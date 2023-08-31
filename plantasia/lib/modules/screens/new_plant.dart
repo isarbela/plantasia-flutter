@@ -12,7 +12,7 @@ class NewPlant extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 38, 58, 41),
         title: Text(
-          AppLocalizations.of(context)!.growYourGarden,
+          AppLocalizations.of(context).growYourGarden,
           style:
               const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
