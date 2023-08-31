@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/screens/new_plant.dart';
+import 'package:plantasia/modules/screens/plant_details.dart';
 import 'package:plantasia/widgets/card_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -63,7 +63,7 @@ class _DashboardState extends State<Dashboard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.yourPlants,
+                  AppLocalizations.of(context).yourPlants,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
@@ -78,7 +78,19 @@ class _DashboardState extends State<Dashboard> {
                       shrinkWrap: true,
                       itemCount: plants.length,
                       itemBuilder: (context, index) {
-                        return CardItem(plantData: plants[index]);
+                        return GestureDetector(
+                          child: CardItem(plantData: plants[index]),
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PlantDetails(
+                                  title: '${plants[index].name}(${plants[index].commonName})',
+                                  plantData: plants[index],
+                                )),
+                            ).then((_) => _fetchPlantsFromDatabase());
+                          },
+                        );
                       }),
                 ),
                 Row(
@@ -91,15 +103,15 @@ class _DashboardState extends State<Dashboard> {
                         padding: MaterialStatePropertyAll(
                             EdgeInsets.fromLTRB(16, 8, 16, 8)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
+                      onPressed: () async {
+                        await Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const NewPlant()),
-                        );
+                        ).then((_) => _fetchPlantsFromDatabase());
                       },
                       child: Text(
-                        AppLocalizations.of(context)!.addPlant,
+                        AppLocalizations.of(context).addPlant,
                         style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
