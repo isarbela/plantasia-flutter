@@ -167,14 +167,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                               commonName: _selectedSpinnerValue,
                               age: _numberValue.toString()));
                         }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Dashboard(
-                              title: 'Plantasia',
-                            ),
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
                       child: const Text(
                         'Salvar planta',

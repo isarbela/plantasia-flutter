@@ -33,7 +33,7 @@ class _PlantDetailsState extends State<PlantDetails> {
           const SizedBox(
             height: 16,
           ),
-          //PlantInfo(plantData: widget.plantData)
+          PlantInfo(plantData: widget.plantData)
         ],
       )),
     );
