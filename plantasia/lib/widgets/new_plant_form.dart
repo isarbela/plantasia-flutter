@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:plantasia/modules/repositories/plant_repository.dart';
 
 class NewPlantForm extends StatefulWidget {
   const NewPlantForm({super.key});
@@ -12,8 +13,9 @@ class NewPlantForm extends StatefulWidget {
 }
 
 class NewPlantFormState extends State<NewPlantForm> {
+  final List<String> commonNames = PlantRepository().getNames();
   String _nameValue = '';
-  String _selectedSpinnerValue = 'Option 1';
+  String _selectedSpinnerValue = '';
   late double _numberValue;
   File? imageFile;
   final _formKey = GlobalKey<NewPlantFormState>();
@@ -82,8 +84,8 @@ class NewPlantFormState extends State<NewPlantForm> {
                       _selectedSpinnerValue = newValue!;
                     });
                   },
-                  items: <String>['Option 1', 'Option 2', 'Option 3']
-                      .map<DropdownMenuItem<String>>((String value) {
+                  items:
+                      commonNames.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
