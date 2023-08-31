@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
 import 'package:plantasia/modules/repositories/db.dart';
+import 'package:plantasia/modules/screens/dashboard.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:plantasia/modules/repositories/plant_repository.dart';
@@ -26,6 +27,7 @@ class NewPlantFormState extends State<NewPlantForm> {
   _savePlant(plant) {
     DBProvider.db.insertPlant(plant);
   }
+
   @override
   void initState() {
     _fetchPlantsNames();
@@ -52,136 +54,136 @@ class NewPlantFormState extends State<NewPlantForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(16),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
+    return SingleChildScrollView(
+      child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(16),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      hintText: 'Name',
                     ),
-                    hintText: 'Name',
+                    onChanged: (value) {
+                      setState(() {
+                        _nameValue = value;
+                      });
+                    },
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      _nameValue = value;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(16),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(16),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      hintText: AppLocalizations.of(context)!.ageLabel,
                     ),
-                    hintText: AppLocalizations.of(context).ageLabel,
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        _numberValue = double.tryParse(value)!;
+                      });
+                    },
                   ),
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    setState(() {
-                      _numberValue = double.tryParse(value)!;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  height: 16.0,
-                ),
-                DropdownButton<String>(
-                  menuMaxHeight: 400,
-                  style: const TextStyle(overflow: TextOverflow.ellipsis),
-                  value: _selectedSpinnerValue,
-                  dropdownColor: const Color.fromARGB(255, 65, 100, 74),
-                  onChanged: (newValue) {
-                    setState(() {
-                      _selectedSpinnerValue = newValue!;
-                    });
-                  },
-                  items:
-                      commonNames.map<DropdownMenuItem<String>>((String name) {
-                    return DropdownMenuItem<String>(
-                      value: name,
-                      child: Text(
-                        name,
-                        overflow: TextOverflow.fade,
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  DropdownButton<String>(
+                    menuMaxHeight: 400,
+                    style: const TextStyle(overflow: TextOverflow.ellipsis),
+                    value: _selectedSpinnerValue,
+                    dropdownColor: const Color.fromARGB(255, 65, 100, 74),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _selectedSpinnerValue = newValue!;
+                      });
+                    },
+                    items: commonNames
+                        .map<DropdownMenuItem<String>>((String name) {
+                      return DropdownMenuItem<String>(
+                        value: name,
+                        child: Text(
+                          name,
+                          overflow: TextOverflow.fade,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.imageLabel,
                         style: const TextStyle(color: Colors.white),
                       ),
-                    );
-                  }).toList(),
-                ),
-                const SizedBox(
-                  height: 16.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.imageLabel,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    IconButton(
-                      onPressed: _pickImage,
-                      icon: const Icon(
-                        Icons.camera_alt,
+                      IconButton(
+                        onPressed: _pickImage,
+                        icon: const Icon(
+                          Icons.camera_alt,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                imageFile != null
-                    ? Image.file(
-                        imageFile!,
-                        fit: BoxFit.cover,
-                        width: 300,
-                        height: 300,
-                      )
-                    : Container(),
-                ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
-                      Color.fromARGB(255, 232, 106, 51)
-                    ),
+                    ],
                   ),
-                  onPressed: () {
-                    if (imageFile != null) {
-                      _savePlant(
-                        PlantDB(
-                          imageFile!.readAsBytesSync(),
-                          id: const Uuid().v1(),
-                          name: _nameValue,
-                          commonName: _selectedSpinnerValue,
-                          age: _numberValue.toString()
+                  imageFile != null
+                      ? Image.file(
+                          imageFile!,
+                          fit: BoxFit.cover,
+                          width: 300,
+                          height: 300,
                         )
-                      );
-                    } else {
-                      _savePlant(
-                          PlantDB(
-                            null,
-                            id: const Uuid().v1(),
-                            name: _nameValue,
-                            commonName: _selectedSpinnerValue,
-                            age: _numberValue.toString()
-                          )
+                      : Container(),
+                  ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 232, 106, 51)),
+                      ),
+                      onPressed: () {
+                        if (imageFile != null) {
+                          _savePlant(PlantDB(imageFile!.readAsBytesSync(),
+                              id: const Uuid().v1(),
+                              name: _nameValue,
+                              commonName: _selectedSpinnerValue,
+                              age: _numberValue.toString()));
+                        } else {
+                          _savePlant(PlantDB(null,
+                              id: const Uuid().v1(),
+                              name: _nameValue,
+                              commonName: _selectedSpinnerValue,
+                              age: _numberValue.toString()));
+                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Dashboard(
+                              title: 'Plantasia',
+                            ),
+                          ),
                         );
-                    }
-                  },
-                  child: const Text(
-                    'Salvar planta',
-                    style: TextStyle(color: Colors.white),
-                  )
-                )
-              ],
-            ),
-          ],
+                      },
+                      child: const Text(
+                        'Salvar planta',
+                        style: TextStyle(color: Colors.white),
+                      ))
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

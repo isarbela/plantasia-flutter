@@ -27,11 +27,13 @@ class CardItem extends StatelessWidget {
         ),
         color: const Color.fromARGB(255, 65, 100, 74),
         child: Row(children: [
-          (plantData.image != null) ? Image.memory(
-            plantData.image!,
-            fit: BoxFit.contain,
-            height: 100,
-          ) : SizedBox(),
+          (plantData.image != null)
+              ? Image.memory(
+                  plantData.image!,
+                  fit: BoxFit.contain,
+                  height: 100,
+                )
+              : const SizedBox(),
           const SizedBox(
             width: 4,
           ),
