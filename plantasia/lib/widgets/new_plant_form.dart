@@ -24,7 +24,6 @@ class NewPlantFormState extends State<NewPlantForm> {
   final _formKey = GlobalKey<NewPlantFormState>();
 
   _savePlant(plant) {
-    print(plant.toString());
     DBProvider.db.insertPlant(plant);
   }
   @override
@@ -86,7 +85,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    hintText: AppLocalizations.of(context)!.ageLabel,
+                    hintText: AppLocalizations.of(context).ageLabel,
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -99,7 +98,10 @@ class NewPlantFormState extends State<NewPlantForm> {
                   height: 16.0,
                 ),
                 DropdownButton<String>(
+                  menuMaxHeight: 400,
+                  style: const TextStyle(overflow: TextOverflow.ellipsis),
                   value: _selectedSpinnerValue,
+                  dropdownColor: const Color.fromARGB(255, 65, 100, 74),
                   onChanged: (newValue) {
                     setState(() {
                       _selectedSpinnerValue = newValue!;
@@ -109,7 +111,11 @@ class NewPlantFormState extends State<NewPlantForm> {
                       commonNames.map<DropdownMenuItem<String>>((String name) {
                     return DropdownMenuItem<String>(
                       value: name,
-                      child: Text(name),
+                      child: Text(
+                        name,
+                        overflow: TextOverflow.fade,
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     );
                   }).toList(),
                 ),
@@ -121,7 +127,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.imageLabel,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     IconButton(
                       onPressed: _pickImage,
@@ -140,6 +146,11 @@ class NewPlantFormState extends State<NewPlantForm> {
                       )
                     : Container(),
                 ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 232, 106, 51)
+                    ),
+                  ),
                   onPressed: () {
                     if (imageFile != null) {
                       _savePlant(
