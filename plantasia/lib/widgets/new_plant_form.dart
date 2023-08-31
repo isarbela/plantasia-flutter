@@ -70,7 +70,7 @@ class NewPlantFormState extends State<NewPlantForm> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      hintText: 'Name',
+                      hintText: AppLocalizations.of(context)!.nameLabel,
                     ),
                     onChanged: (value) {
                       setState(() {
@@ -169,9 +169,9 @@ class NewPlantFormState extends State<NewPlantForm> {
                         }
                         Navigator.pop(context);
                       },
-                      child: const Text(
-                        'Salvar planta',
-                        style: TextStyle(color: Colors.white),
+                      child: Text(
+                        AppLocalizations.of(context)!.savePlantLabel,
+                        style: const TextStyle(color: Colors.white),
                       ))
                 ],
               ),

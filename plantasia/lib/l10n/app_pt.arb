@@ -5,5 +5,7 @@
    "nameLabel": "Nome",
    "ageLabel": "Idade (em semanas)",
    "speciesLabel": "Espécie",
-   "imageLabel": "Foto"
+   "imageLabel": "Foto",
+   "savePlantLabel": "Salvar Planta",
+   "commonNameLabel": "Nome Comum"
 }

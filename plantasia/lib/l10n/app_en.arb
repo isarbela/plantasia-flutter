@@ -26,5 +26,13 @@
     "imageLabel": "Image",
     "@imageLabel": {
         "description": "Label for plant image" 
+    },
+    "savePlantLabel": "Save plant",
+    "@savePlantLabel": {
+        "description": "Label for button save plant"
+    },
+    "commonNameLabel": "Common Name",
+    "@commonNameLabel": {
+        "description": "Label for plant  common name" 
     }
 }

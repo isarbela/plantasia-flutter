@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plantasia/modules/models/plant.dart';
 import 'package:plantasia/modules/models/plant_db.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlantInfo extends StatelessWidget {
   final PlantDB plantData;
@@ -33,14 +34,14 @@ class PlantInfo extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                "Nome: ${plantData.name}",
+                "${AppLocalizations.of(context)!.nameLabel}: ${plantData.name}",
                 style: title,
               ),
               const SizedBox(
                 height: 8,
               ),
               Text(
-                "Nome comum: ${plantData.commonName}",
+                "${AppLocalizations.of(context)!.commonNameLabel}: ${plantData.commonName}",
                 style: textInfo,
               ),
               const SizedBox(
@@ -99,7 +100,7 @@ class PlantInfo extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                "Idade: ${plantData.age} semanas",
+                "${AppLocalizations.of(context)!.ageLabel}: ${plantData.age}",
                 style: textInfo,
               ),
               const SizedBox(
